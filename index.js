@@ -4,6 +4,7 @@ const multer = require('multer')
 const excelToJson = require('convert-excel-to-json')
 
 const app = express()
+const http = require('http').Server(app)
 
 var storage = multer.diskStorage({ //multers disk storage settings
   destination: function (req, file, cb) {
@@ -119,6 +120,9 @@ app.get('/',function(req,res){
   res.sendFile(__dirname + "/index.html");
 });
 
-app.listen('3000', function(){
+http.listen({
+    host: '192.168.31.67',
+    port: 3000
+}, function(){
   console.log('running on 3000...');
 });
